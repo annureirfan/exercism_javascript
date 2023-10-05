@@ -35,31 +35,7 @@ export function timeToMixJuice(name) {
  * @param {string[]} limes
  * @returns {number} number of limes cut
  */
-export function limesToCut(wedgesNeeded, limes) {
-  let limesCut = 0;
-  let wedgesLeft = wedgesNeeded;
-
-  while (wedgesLeft > 0) {
-    if (limes.length)
-      for (let i = 0; i < limes.length; i++) {
-        switch (limes[i]) {
-          case "small":
-            wedgesLeft -= 6;
-            limesCut += 1;
-            break;
-          case "medium":
-            wedgesLeft -= 8;
-            limesCut += 1;
-            break;
-          case "large":
-            wedgesLeft -= 10;
-            limesCut += 1;
-            break;
-        }
-      }
-  }
-  return limesCut;
-}
+export function limesToCut(wedgesNeeded, limes) {}
 
 /**
  * Determines which juices still need to be prepared after the end of the shift.
