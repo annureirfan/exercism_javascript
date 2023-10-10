@@ -1,2 +1,2 @@
-# exercism_javascript
+# Exercism javscript 
 Exercism javasxcript exercises
