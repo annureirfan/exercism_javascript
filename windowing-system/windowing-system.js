@@ -33,37 +33,26 @@ export class ProgramWindow {
   }
 
   resize(newSize) {
-    if (newSize.width > 0 && newSize.width <= 300) {
-      this.size.width = newSize.width;
-    } else if (newSize.width <= 0) {
-      this.size.width = 1;
-    } else if (newSize.width > 300) {
-      this.size.width = 300;
-    }
-    if (newSize.height > 0 && newSize.height <= 300) {
-      this.size.height = newSize.height;
-    } else if (newSize.height <= 0) {
-      this.size.height = 1;
-    } else if (newSize.height > 400) {
-      this.size.height = 400;
-    }
+    const maxWidth = this.screenSize.width - this.position.x;
+    const maxHeight = this.screenSize.height - this.position.y;
+
+    const newWidth = Math.max(1, Math.min(newSize.width, maxWidth));
+    const newHeight = Math.max(1, Math.min(newSize.height, maxHeight));
+    this.size.resize(newWidth, newHeight);
   }
 
   move(newPosition) {
-    // Screen size is (800,600)
-    if (newPosition.x >= 0) {
-      this.position.x = newPosition.x;
-    } else if (newPosition.x < 0) {
-      this.position.x = 0;
-    } else if (newPosition.x > this.size.width) {
-      this.position.x = 800;
-    }
-    if (newPosition.y >= 0) {
-      this.position.y = newPosition.y;
-    } else if (newPosition.y < 0) {
-      this.position.y = 0;
-    } else if (newPosition.y > this.size.height) {
-      this.position.y = 600;
-    }
+    const maxX = this.screenSize.width - this.size.width;
+    const maxY = this.screenSize.height - this.size.height;
+
+    const newX = Math.max(0, Math.min(newPosition.x, maxX));
+    const newY = Math.max(0, Math.min(newPosition.y, maxY));
+    this.position.move(newX, newY);
   }
+}
+export function changeWindow(window) {
+  window.move(new Position());
+  window.resize(new Size(400, 300));
+  window.move(new Position(100, 150));
+  return window;
 }
